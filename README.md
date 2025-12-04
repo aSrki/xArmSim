@@ -1,0 +1,3 @@
+# Repository used for developing simple simulation for using xArm7 robot from Mujoco
+
+This repository is used for making simple application using xArm7 robot in Mujoco simulator. The idea is to make the robot move an object with ArUco tag on it from some (pseudo) random pistion to the predefined position. The goal of the project is to replace the camera with PupilCore glasses and to be able to look at an object and make robot move it to some other position.
