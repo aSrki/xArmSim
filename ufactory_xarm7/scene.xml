@@ -1,0 +1,79 @@
+<mujoco model="xarm7 scene">
+  <include file="xarm7_nohand.xml"/>
+
+  <statistic center="0.2 0 0.4" extent=".65"/>
+
+  <asset>
+    <texture name="my_texture21" type="2d" file="C:\\Users\\srkia\\Desktop\\xArmSim\\imgs\\4x4_21.png"/>
+    <material name="aruco21" texture="my_texture21" shininess="0.1" specular="0.1"/>
+  </asset>
+
+  <asset>
+    <texture name="my_texture22" type="2d" file="C:\\Users\\srkia\\Desktop\\xArmSim\\imgs\\4x4_22.png"/>
+    <material name="aruco22" texture="my_texture22" shininess="0.1" specular="0.1"/>
+  </asset>
+
+  <asset>
+    <texture name="my_texture23" type="2d" file="C:\\Users\\srkia\\Desktop\\xArmSim\\imgs\\4x4_23.png"/>
+    <material name="aruco23" texture="my_texture23" shininess="0.1" specular="0.1"/>
+  </asset>
+
+  <asset>
+    <texture name="my_texture24" type="2d" file="C:\\Users\\srkia\\Desktop\\xArmSim\\imgs\\4x4_24.png"/>
+    <material name="aruco24" texture="my_texture24" shininess="0.1" specular="0.1"/>
+  </asset>
+
+  <asset>
+    <texture name="my_texture42" type="2d" file="C:\\Users\\srkia\\Desktop\\xArmSim\\imgs\\4x4_42.png"/>
+    <material name="aruco42" texture="my_texture42" shininess="0.1" specular="0.1"/>
+  </asset>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="150" elevation="-20" offwidth="2000" offheight="2000"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" rgb1="0.2 0.3 0.4" rgb2="0.3 0.4 0.5"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.0"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+    <geom type="cylinder" size=".06 .06" pos="0 0 .06" rgba="0 1 1 1"/>
+  </worldbody>
+
+  <worldbody>
+      <body pos="1.3 0.0 0.5"  euler="0.0 1.05 1.57">
+        <geom type="box" size=".07 .05 .05"/>
+        <camera name="my_camera" pos="0.0 0.0 0.0" fovy="60" mode="fixed"/>
+      </body>
+  </worldbody>
+
+  <worldbody>
+    <body>
+      <geom name="aruco21" type="box" size="0.05 0.05 0.001" material="aruco21" pos="0.0 -0.5 0.0"/>
+    </body>
+    <body>
+      <geom name="aruco22" type="box" size="0.05 0.05 0.001" material="aruco22" pos="0.0 0.5 0.0"/>
+    </body>
+    <body>
+      <geom name="aruco23" type="box" size="0.05 0.05 0.001" material="aruco23" pos="0.5 -0.5 0.0"/>
+    </body>
+    <body>
+      <geom name="aruco24" type="box" size="0.05 0.05 0.001" material="aruco24" pos="0.5 0.5 0.0"/>
+    </body>
+  </worldbody>
+
+  <worldbody>
+    <body>
+      <joint type="free" name="aruco_joint"/>
+      <geom name="aruco42" type="box" size="0.05 0.05 0.05" material="aruco42" pos="0.35 0.2 0.0"/>
+    </body>
+  </worldbody>
+
+</mujoco>
