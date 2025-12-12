@@ -1,6 +1,5 @@
 import mujoco
 import mujoco.viewer
-import os
 import roboticstoolbox as rtb
 from spatialmath import SE3
 import matplotlib.pyplot as plt
@@ -60,8 +59,7 @@ robot = rtb.Robot.URDF("C:\\Users\\srkia\\Desktop\\xArmSim\\ufactory_xarm7\\xarm
 MODEL_NAME = "ufactory_xarm7"
 MODEL_FILE = "scene.xml"
 
-model_path = os.path.join(MODEL_NAME, MODEL_FILE)
-model = mujoco.MjModel.from_xml_path(model_path)
+model = mujoco.MjModel.from_xml_path("C:\\Users\\srkia\\Desktop\\xArmSim\\ufactory_xarm7\\scene.xml")
 data = mujoco.MjData(model)
 
 renderer = mujoco.Renderer(model, height=1080, width=1920)
@@ -72,8 +70,11 @@ parameters = cv2.aruco.DetectorParameters()
 detector = cv2.aruco.ArucoDetector(aruco_dict, parameters)
 
 # move_joint("aruco_joint", [random.uniform(0.15, 0.45), random.uniform(-0.4, 0.4), 0.0], [1.0, 0.0, 0.0, 0.0])
+fig, (ax1, ax2) = plt.subplots(1,2)
 
 image = get_image()
+ax1.imshow(image)
+ax1.grid(False)
 
 corners, ids, rejected = detector.detectMarkers(image)
 
@@ -86,8 +87,9 @@ center_x, center_y = find_marker_center(corners)
 target_pose = SE3.Trans(center_y/1000.0, (center_x - 500.0)/1000, 0.0) * SE3.RPY(0.0, 3.14, 0.0)
 ik_sol = robot.ik_LM(target_pose) 
 
-plt.grid(False)
-plt.imshow(image)
+ax2.imshow(image)
+ax2.grid(False)
+
 plt.show(block=False)
 plt.pause(0.1)
 
