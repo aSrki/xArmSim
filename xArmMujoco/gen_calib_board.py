@@ -2,6 +2,6 @@ import cv2
 import numpy as np
 
 dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50)
-board = cv2.aruco.CharucoBoard((5, 7), 0.04, 0.02, dictionary) # squaresX, squaresY, squareLength, markerLength
-board_image = board.generateImage((600, 800)) # imageSize
-cv2.imwrite("charuco_board.png", board_image)
+board = cv2.aruco.CharucoBoard((6, 8), 0.1, 0.05, dictionary) 
+board_image = board.generateImage((6000, 8000))
+cv2.imwrite("charuco_board2.png", board_image)
